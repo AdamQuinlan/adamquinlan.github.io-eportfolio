@@ -293,22 +293,6 @@ export const studied = {
 
 export const uniProjects = [
   {
-    slug: 'capstone',
-    title: 'Capstone: business review for The King’s Foundation',
-    kind: 'Final-year capstone, Macquarie Business School',
-    partner: 'The King’s Foundation (charity)',
-    summary:
-      'The capstone brings the whole degree together. Students from different business majors are grouped into teams to review a real organisation. Our team reviewed The King’s Foundation and built a business plan and implementation process that worked within a budget and returned a profit.',
-    did: [
-      'Reviewed the charity’s current position and where it could grow.',
-      'Built a business plan and a step-by-step implementation process.',
-      'Kept the plan within a set budget while showing a return.',
-    ],
-    lead:
-      'My teammates came from different majors and found planning and deadlines harder, so taking the lead came naturally. I worked out what each person was best at, gave them work that suited them, and kept the plan moving to schedule.',
-    learned: ['Leading a team', 'Delegating to strengths', 'Time management', 'Business planning'],
-  },
-  {
     slug: 'pace',
     title: 'PACE: international growth for a hiring start-up',
     kind: 'PACE industry project, Macquarie University',
