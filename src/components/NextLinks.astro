@@ -1,0 +1,35 @@
+---
+// "Keep exploring" strip at the bottom of each inside page,
+// so visitors always have an obvious next step.
+import { hubLinks, u } from '../data/site';
+interface Props { current: string }
+const { current } = Astro.props;
+const links = hubLinks.filter((l) => l.href !== current);
+---
+<section class="next" aria-labelledby="next-title">
+  <div class="wrap">
+    <h2 id="next-title">Keep exploring</h2>
+    <ul class="cycle">
+      <li><a href={u('/')}><b>Home</b><span>The overview.</span></a></li>
+      {links.map((l) => <li><a href={u(l.href)}><b>{l.title}</b><span>{l.body}</span></a></li>)}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .next { padding: clamp(3rem, 7vw, 4.5rem) 0; border-top: 1px solid var(--line); background: radial-gradient(circle at 10% 0%, rgba(95, 208, 217, 0.16), transparent 40%), radial-gradient(circle at 95% 100%, rgba(240, 180, 60, 0.14), transparent 40%), var(--band); }
+  h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 1.25rem; }
+  ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; }
+  a {
+    display: block; height: 100%; padding: 1rem 1.1rem; border-radius: 14px; background: var(--surface);
+    text-decoration: none; color: var(--ink); box-shadow: 0 0 0 1px var(--ring);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  a:hover { box-shadow: 0 0 0 2px var(--accent); transform: translateY(-2px); }
+  b { display: block; margin-bottom: 0.2rem; }
+  b::before { content: ''; display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--c); margin-right: 0.5rem; vertical-align: 0.05em; }
+  a:hover { box-shadow: 0 0 0 2px var(--c); }
+  span { color: var(--muted); font-size: 0.86rem; line-height: 1.4; display: block; }
+  @media (max-width: 60rem) { ul { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 30rem) { ul { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,86 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import NextLinks from '../components/NextLinks.astro';
+import G from '../components/G.astro';
+import { u, otherWork, uniProjects } from '../data/site';
+const pace = uniProjects.find((p) => p.slug === 'pace')!;
+---
+<Base title="What I’ve built" description="The AI checking app and reporting automation I worked on at Lazard Asset Management.">
+  <PageHero title="What I’ve built." kicker="Beyond the capstone">
+    <p class="lede">
+      I’ve been interning at Lazard Asset Management in Sydney since March 2026, across business analysis, data and business systems.
+      My title is intern, but two of the things I’ve worked on run in production.
+    </p>
+    <svg slot="art" class="hero-art" viewBox="0 0 360 260" role="img" aria-label="Three AI agents checking a document and returning one list">
+      <path class="d-line on" stroke-dasharray="6 7" d="M70 52 L170 130 M70 130 L170 130 M70 208 L170 130 M210 130 L260 130" />
+      <rect class="d-node" x="10" y="32" width="120" height="38" rx="19" /><text x="70" y="56" style="text-anchor:middle">Visual agent</text>
+      <rect class="d-node" x="10" y="111" width="120" height="38" rx="19" /><text x="70" y="135" style="text-anchor:middle">Period agent</text>
+      <rect class="d-node" x="10" y="190" width="120" height="38" rx="19" /><text x="70" y="214" style="text-anchor:middle">Raw data agent</text>
+      <circle class="d-me" cx="190" cy="130" r="26" />
+      <rect class="d-node" x="260" y="78" width="96" height="104" rx="12" /><text x="308" y="108" style="text-anchor:middle">Fine</text><text x="308" y="134" style="text-anchor:middle">Look at</text><text x="308" y="160" style="text-anchor:middle">Fix</text>
+    </svg>
+  </PageHero>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="grid2 cycle">
+        <div class="card">
+          <p class="where">Built with and for product and sales</p>
+          <h3>AI factsheet checker</h3>
+          <p>Three AI agents check each report: one for spelling and layout, one for changes since last period, and one against the raw data. They question each other to filter out false alarms, then return one list: fine, look at, fix.</p>
+          <p class="lesson">About an hour down to about five minutes, per report</p>
+          <p><a class="more" href={u('/projects/ai-report-checker/')}>How it works</a></p>
+        </div>
+        <div class="card">
+          <p class="where">Team project, my part from March 2026</p>
+          <h3>Monthly client report automation</h3>
+          <p>Around 200 Excel master files pull in source data with one click, run built-in checks, and produce draft reports. Since about September I have built new master files end to end.</p>
+          <p class="lesson">Two weeks down to six days, run by one person instead of two</p>
+          <p><a class="more" href={u('/projects/client-report-automation/')}>How it works</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="wrap">
+      <p class="kick">Why people actually use it</p>
+      <h2>Shipping is the easy part.</h2>
+      <div class="split">
+        <div>
+          <p>The <G k="adaptive" /> observed that it is easy to turn on technology, and that changing people’s behaviour is much harder. I saw that first-hand. The app worked because of what happened before and around the code.</p>
+          <p>I spent time with product and sales to learn how they checked documents and where the time went. They were pulling five or six data sources from different folders, and sometimes comparing against the wrong version.</p>
+          <p>Then I took each version back to them, gathered their input and built it in. The <G k="law" /> stressed that decisions are only as sound as their data, which is why my master files check themselves, for example by confirming weights total 100%.</p>
+        </div>
+        <svg class="diagram" viewBox="0 0 440 280" role="img" aria-label="A loop: watch how the team works, prototype, take it back to them, change it, repeat until it is in production and used.">
+          <path class="d-line on" stroke-dasharray="6 7" d="M220 42 C340 42 400 100 400 140 C400 190 330 236 220 236 C110 236 40 190 40 140 C40 100 100 42 220 42" fill="none"/>
+          <rect class="d-node" x="140" y="20" width="160" height="44" rx="22" /><text x="220" y="47" style="text-anchor:middle">Watch the work</text>
+          <rect class="d-node" x="310" y="118" width="124" height="44" rx="22" /><text x="372" y="145" style="text-anchor:middle">Prototype</text>
+          <rect class="d-node" x="140" y="214" width="160" height="44" rx="22" /><text x="220" y="241" style="text-anchor:middle">Take it back to them</text>
+          <rect class="d-node" x="6" y="118" width="124" height="44" rx="22" /><text x="68" y="145" style="text-anchor:middle">Change it</text>
+          <text x="220" y="130" style="text-anchor:middle">In production</text><text x="220" y="150" class="s" style="text-anchor:middle">used by product and sales</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="kick">More evidence</p>
+      <h2>Other work that’s relevant to you.</h2>
+      <div class="grid3 cycle">
+        <div class="card"><h3>Salesforce replacement concept</h3><p>I worked through a tool with our sales team and wireframed it, so that Salesforce stays as a contact list while the app creates campaigns and handles the rest. My team then built on those ideas.</p></div>
+        <div class="card"><h3>Snowflake</h3><p>We use Snowflake for data storage and containers, so that our apps can access each other’s data.</p></div>
+        <div class="card"><h3>Quarterly and annual reporting</h3><p>I’m now applying the same automation approach to quarterly and annual reports, including SRS documents and tax files.</p></div>
+        <div class="card"><h3>PACE industry project</h3><p>{pace.summary}</p><p class="lesson">I met the partner regularly, explained what we were doing and why, and stayed honest about what we found.</p></div>
+        {otherWork.filter((w) => w.points.length).map((w) => (
+          <div class="card"><h3>{w.title}</h3><p class="where">{w.org}, {w.period}</p><p>{w.points[0]}</p></div>
+        ))}
+        <div class="card"><h3>This website</h3><p>I built this site with Claude Code, on Astro and GitHub Pages, rather than using a template. Every diagram on it is drawn in code. <a href={u('/contact/')}>How I made it</a>.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <NextLinks current="/built/" />
+</Base>

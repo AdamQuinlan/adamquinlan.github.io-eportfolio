@@ -1,0 +1,130 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import NextLinks from '../components/NextLinks.astro';
+import G from '../components/G.astro';
+import { u } from '../data/site';
+
+const beliefs = [
+  ['The tutorial went smoothly.', 'The sample feedback report warns that people often rate an experience more highly than their teammates do. I was the one coordinating, and that is the position from which a team most easily looks like it’s working.', 'Ask how it felt for others, not just whether we finished.'],
+  ['Silence meant people weren’t engaged.', 'Looking back, I suspect it may have been confusion about roles. I can’t be sure, because I never asked.', 'Treat silence as a question. Don’t treat it as an answer.'],
+  ['Silence meant agreement.', 'Shared leadership means coordination is spread across a team. Ours sat with me, and I never checked whether anyone else wanted the role.', 'Offer the role before taking it.'],
+  ['Little conflict meant we were doing well.', 'Our Accounting chapter records the Week 6 team report warning that low conflict could mean people were holding back. Then nobody questioned the 9.5%.', 'Invite challenge on purpose.'],
+  ['More comparisons meant better analysis.', 'My tutor’s feedback was to analyse a few properly rather than many loosely.', 'Go deep on fewer things.'],
+];
+---
+<Base title="Teamwork" description="How I led my capstone team, what it cost, and what I am changing.">
+  <PageHero title="The fastest route isn’t always the right one." kicker="What my capstone team taught me about myself">
+    <p class="lede">
+      Getting a team moving and leading a team aren’t the same thing. My capstone showed me the difference.
+    </p>
+    <svg slot="art" class="hero-art" viewBox="0 0 360 260" role="img" aria-label="A conversation bubble turning into a decision">
+      <rect class="d-node" x="20" y="36" width="200" height="74" rx="18" /><text x="120" y="68" style="text-anchor:middle">Here’s my idea.</text><text x="120" y="90" style="text-anchor:middle">What’s yours?</text>
+      <rect class="d-me" x="130" y="146" width="210" height="74" rx="18" /><text x="235" y="178" style="text-anchor:middle;fill:#fff">This is the idea.</text><text x="235" y="200" style="text-anchor:middle;fill:#fff">Got anything better?</text>
+      <path class="d-line on" stroke-dasharray="6 7" d="M120 110 C120 140 150 130 180 146" />
+    </svg>
+  </PageHero>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="kick">What happened</p>
+      <h2>Five people who didn’t choose each other.</h2>
+      <div class="split">
+        <ol class="tl cycle">
+          <li><span class="when">The first couple of weeks</span><b>I tried asking</b><p>I was proactive. I shared ideas, tried to set timelines, and asked what everyone else thought. I got very little back.</p></li>
+          <li><span class="when">Agility Challenge tutorial</span><b>Ten minutes of confusion</b><p>None of us had read the brief, me included. I got everyone to open the task, read it together, and start throwing out ideas. I created the shared deck, and we submitted on 4 September.</p></li>
+          <li><span class="when">From then on</span><b>I stopped asking and started deciding</b><p>“This is the idea. Do you have anything better? If not, let’s go with that.”</p></li>
+          <li><span class="when">Week 6 onward</span><b>The evidence came in</b><p>Feedback reports and my teammates’ own chapters showed me what I had missed.</p></li>
+          <li><span class="when">October</span><b>Five chapters, one model</b><p>We delivered an integrated report, and each of us did work the others couldn’t have done.</p></li>
+        </ol>
+        <div>
+          <div class="bubbles" style="grid-template-columns:minmax(0,1fr)">
+            <div class="bub a"><small>How I started</small>“Hey, this is my idea. What’s yours?”</div>
+            <div class="bub b"><small>What I changed to</small>“This is the idea. Do you have anything better?”</div>
+          </div>
+          <p style="margin-top:1.25rem">Forceful isn’t quite the right word, but that was the intent. And it worked. It got us to a starting line, and I think we would have taken a lot longer without it.</p>
+          <p>When my own wellness idea was dropped, the disagreement stayed on the idea and never became personal. That part I would keep.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="wrap">
+      <p class="kick">What it cost</p>
+      <h2>I solved the speed problem and created a different one.</h2>
+      <div class="split">
+        <div>
+          <p>Leadership came to me by default. Nobody else put themselves forward and the silence was costing us time, so I stepped in. I never checked whether anyone else wanted it, or whether I had just been first to speak.</p>
+          <p>Delegation is where I was weakest. The <G k="nurse" /> advised knowing what each person brings to a team. I did my own share and helped others with theirs, but I didn’t properly work out what each person was good at first.</p>
+          <p>The clearest sign came later. My teammates’ chapters show depth I hadn’t drawn out early: a rebuilt financial model, 5,000 simulated trials, a full cyber risk register. Those skills had been there all along.</p>
+        </div>
+        <svg class="diagram" viewBox="0 0 520 280" role="img" aria-label="Two team shapes. On the left, the team we were, with every line running through me. On the right, the team I want to run, with everyone connected to each other.">
+          <text x="120" y="20" style="text-anchor:middle">The team we were</text>
+          <g>
+            <path class="d-line on" d="M120 150 L50 80 M120 150 L190 80 M120 150 L50 220 M120 150 L190 220" />
+            <circle class="d-node" cx="50" cy="80" r="20" /><circle class="d-node" cx="190" cy="80" r="20" /><circle class="d-node" cx="50" cy="220" r="20" /><circle class="d-node" cx="190" cy="220" r="20" />
+            <circle class="d-me" cx="120" cy="150" r="26" /><text x="120" y="155" style="text-anchor:middle;fill:#fff">Me</text>
+          </g>
+          <text x="400" y="20" style="text-anchor:middle">The team I want to run</text>
+          <g transform="translate(280 0)">
+            <path class="d-line on" d="M120 150 L50 80 M120 150 L190 80 M120 150 L50 220 M120 150 L190 220 M50 80 L190 80 M190 80 L190 220 M190 220 L50 220 M50 220 L50 80 M50 80 L190 220 M190 80 L50 220" />
+            <circle class="d-node" cx="50" cy="80" r="20" /><circle class="d-node" cx="190" cy="80" r="20" /><circle class="d-node" cx="50" cy="220" r="20" /><circle class="d-node" cx="190" cy="220" r="20" />
+            <circle class="d-me" cx="120" cy="150" r="26" /><text x="120" y="155" style="text-anchor:middle;fill:#fff">Me</text>
+          </g>
+          <text x="120" y="268" class="s" style="text-anchor:middle">Fast, but it all depends on one person</text>
+          <text x="400" y="268" class="s" style="text-anchor:middle">Slower to start, and it holds up without me</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="kick">My weakness</p>
+      <h2>Patience.</h2>
+      <div class="split">
+        <div>
+          <p>When things aren’t going my way, I replace them with the most efficient process I can find. In a team, that meant that instead of working through people’s different levels of effort, I bypassed it and went straight to doing the work myself.</p>
+          <p>I can see where this comes from. At Lazard, that same instinct gets rewarded. If a process is slow, I automate it. But a teammate isn’t a process. When I route around a person, they learn nothing, and I become the bottleneck I was trying to remove.</p>
+          <p>The <G k="canva" /> changed how I see this. Training everyone cut customer wait times from 45 minutes to five. One capable person working faster would never have got there.</p>
+        </div>
+        <div class="card" style="--c:var(--coral)">
+          <h3>What this could look like at work</h3>
+          <p>woolloo’s definition of done is that the customer is using it and loves it. I’d be tempted to take over whenever something slowed down. In a small team, that would leave colleagues out, and it could leave me building something the customer never asked for.</p>
+          <p class="lesson">So I want to be held to this. If you see me taking over when I should be asking, tell me.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="wrap">
+      <p class="kick">How I know</p>
+      <h2>What I believed, and what the evidence said.</h2>
+      <p class="sub">I never received my individual feedback report, so I worked from the sample on iLearn, my tutor’s feedback, and what my teammates recorded.</p>
+      <div class="tbl-wrap">
+        <table class="t">
+          <thead><tr><th>What I believed</th><th>What the evidence said</th><th>What I do now</th></tr></thead>
+          <tbody>{beliefs.map(([a, b, c]) => <tr><td><b>{a}</b></td><td>{b}</td><td>{c}</td></tr>)}</tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="kick">What I’m changing</p>
+      <h2>Four things I’ll do on the next team.</h2>
+      <div class="grid2 cycle">
+        <div class="card"><h3>Ten minutes at the start</h3><p>Before any task: majors, strengths, availability, and what each person wants from the project. Our team set up a chat on day one and only ever used it for logistics.</p></div>
+        <div class="card"><h3>Separate ideas from testing</h3><p>Fifteen minutes of open ideas, then test each against fixed criteria. Cost, client fit and whether we can deliver it would probably have ended my wellness idea in five minutes, not forty.</p></div>
+        <div class="card"><h3>Ask a person, not the room</h3><p>“What does everyone think?” almost always gets silence. Asking a named person about a specific problem doesn’t.</p></div>
+        <div class="card"><h3>Teach before I take over</h3><p>If someone’s stuck, I show them once before I step in. I’ll also share my plan in writing before a meeting. The <G k="canva" /> described a manager whose team only came on board once she did that.</p></div>
+      </div>
+      <p style="margin-top:1.5rem">I’ll judge this by what others tell me, because my own view from the middle of the team has already proved unreliable. <a href={u('/next/')}>See how I’ll measure it</a>.</p>
+    </div>
+  </section>
+
+  <NextLinks current="/teamwork/" />
+</Base>

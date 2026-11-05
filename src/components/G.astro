@@ -1,0 +1,8 @@
+---
+// An industry guest, quoted by job title. Links to LinkedIn when a URL is set in site.ts.
+import { guests } from '../data/site';
+interface Props { k: string; bare?: boolean }
+const { k } = Astro.props;
+const g = guests[k];
+---
+{g.linkedin ? <a class="guest" href={g.linkedin}>{g.title}</a> : <span class="guest">{g.title}</span>}

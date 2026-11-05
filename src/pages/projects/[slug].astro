@@ -1,0 +1,169 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import NextLinks from '../../components/NextLinks.astro';
+import { projects, fill, u, type Project } from '../../data/site';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
+}
+
+const { project } = Astro.props as { project: Project };
+---
+<Base title={project.title} description={project.summary}>
+  <PageHero title={project.title} kicker="Project" art={project.slug === 'ai-report-checker' ? 'checker' : 'automation'}>
+    <p class="lede">{project.summary}</p>
+    <ul class="tags">{project.tags.map((t) => <li>{t}</li>)}</ul>
+  </PageHero>
+  <section class="glance-sec">
+    <div class="wrap">
+      <ul class="metrics">
+        {project.metrics.map((m) => <li><b>{m.value}</b><span>{m.label}</span></li>)}
+      </ul>
+      <dl class="glance">
+        <div><dt>My role</dt><dd>{project.role}</dd></div>
+        <div><dt>Team</dt><dd>{project.team}</dd></div>
+        <div><dt>When</dt><dd>{project.when}</dd></div>
+        <div><dt>Stack</dt><dd><ul class="tags">{project.stack.map((t) => <li>{t}</li>)}</ul></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <article class="section">
+    <div class="wrap">
+      <a class="back" href={u("/built/")}>Back to what I’ve built</a>
+
+      <div class="body">
+        <section>
+          <h2>The problem</h2>
+          <p set:html={fill(project.problem)} />
+        </section>
+        {project.beforeAfter && (
+          <section class="ba-sec">
+            <h2>Before and after</h2>
+            <div class="ba">
+              <div class="ba-col before">
+                <div class="ba-head"><span class="ba-tag">Before</span><b>Checking by hand</b><span class="ba-time">{project.beforeAfter.before.time}</span></div>
+                <ol>
+                  {project.beforeAfter.before.steps.map((st) => (
+                    <li><span>{st.text}</span>{st.pain && <em>{st.pain}</em>}</li>
+                  ))}
+                </ol>
+              </div>
+              <div class="ba-col after">
+                <div class="ba-head"><span class="ba-tag">After</span><b>With the AI checker</b><span class="ba-time">{project.beforeAfter.after.time}</span></div>
+                <ol>
+                  {project.beforeAfter.after.steps.map((st) => (
+                    <li><span>{st.text}</span>{st.gain && <em>{st.gain}</em>}</li>
+                  ))}
+                </ol>
+              </div>
+            </div>
+          </section>
+        )}
+        <section>
+          <h2>How it flows</h2>
+          <ol class="flow">
+            {project.flow.map((f, i) => typeof f === 'string'
+              ? <li><span class="fn">{i + 1}</span>{f}</li>
+              : <li class="has-sub"><span class="fn">{i + 1}</span>{f.step}<ul class="sub">{f.sub.map((x) => <li>{x}</li>)}</ul></li>
+            )}
+          </ol>
+        </section>
+        <section>
+          <h2>What I built</h2>
+          <ul class="steps">{project.approach.map((a) => <li set:html={fill(a)} />)}</ul>
+        </section>
+        <section>
+          <h2>The result</h2>
+          <p set:html={fill(project.outcome)} />
+        </section>
+        {project.next && (
+          <section class="whats-next">
+            <h2>What I'm working on now</h2>
+            <p>{project.next}</p>
+          </section>
+        )}
+        {project.links && project.links.length > 0 && (
+          <section>
+            <h2>Links</h2>
+            <ul>{project.links.map((l) => <li><a href={l.url}>{l.label}</a></li>)}</ul>
+          </section>
+        )}
+      </div>
+      <div class="next-proj">
+        {projects.filter((p) => p.slug !== project.slug).map((p) => (
+          <a href={u(`/projects/${p.slug}/`)}><span>Next project</span><b>{p.title}</b></a>
+        ))}
+      </div>
+    </div>
+  </article>
+  <NextLinks current="/projects" />
+</Base>
+
+<style>
+  .back { display: inline-block; margin-bottom: 1.5rem; font-weight: 500; }
+:global(.ph) .tags { margin-top: 1.25rem; }
+  .glance-sec { padding: clamp(2rem, 5vw, 3rem) 0 0; }
+  .metrics { list-style: none; margin: 0; padding: 1.4rem clamp(1rem, 3vw, 2rem); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; background: var(--night); color: var(--night-ink); border-radius: 20px; }
+  .metrics b { display: block; font-size: clamp(1.5rem, 2.8vw, 2.2rem); font-weight: 800; letter-spacing: -0.04em; background: linear-gradient(100deg, #5fd0d9 10%, #f5f5f7 85%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .metrics span { color: var(--night-muted); font-size: 0.88rem; }
+  .glance { margin: 1.25rem 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem 1.5rem; }
+  .glance dt { font-size: 0.8rem; font-weight: 600; color: var(--muted); margin-bottom: 0.25rem; }
+  .glance dd { margin: 0; font-size: 0.95rem; }
+  .glance .tags { gap: 0.3rem; }
+  .flow { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; max-width: 26rem; }
+  .flow li { position: relative; display: flex; align-items: center; gap: 0.6rem; background: var(--surface); border-radius: 12px; padding: 0.6rem 0.85rem; box-shadow: 0 0 0 1px var(--line); font-weight: 550; font-size: 0.95rem; }
+  .flow > li:not(:last-child)::after { content: ''; position: absolute; left: 1.55rem; bottom: -0.62rem; width: 2px; height: 0.62rem; background: var(--accent); }
+  .flow > li:last-child { box-shadow: 0 0 0 2px var(--accent); }
+  .flow .has-sub { flex-wrap: wrap; }
+  .flow .sub { list-style: none; margin: 0.15rem 0 0 1.9rem; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; width: 100%; }
+  .flow .sub li { background: var(--accent-soft); color: var(--accent); border-radius: 999px; padding: 0.2rem 0.65rem; font-size: 0.85rem; font-weight: 600; box-shadow: none; }
+  .flow .sub li::after { display: none; }
+  .fn { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-size: 0.75rem; font-weight: 700; }
+  .next-proj { margin-top: 3rem; }
+  .next-proj a { display: inline-flex; flex-direction: column; padding: 1rem 1.3rem; border-radius: 16px; background: var(--surface); box-shadow: 0 0 0 1px var(--line); text-decoration: none; color: var(--ink); }
+  .next-proj a:hover { box-shadow: 0 0 0 2px var(--accent); }
+  .next-proj span { font-size: 0.8rem; color: var(--muted); font-weight: 600; }
+  .next-proj b { font-size: 1.15rem; }
+  @media (max-width: 52rem) {
+    .metrics { grid-template-columns: 1fr; }
+    .glance { grid-template-columns: 1fr 1fr; }
+  }
+  .body:has(.ba-sec) { max-width: 60rem; }
+  .ba { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+  .ba-col { border-radius: 18px; padding: 1.1rem 1.2rem 1.25rem; box-shadow: 0 0 0 1px var(--ring); }
+  .ba-col.before { background: linear-gradient(180deg, var(--coral-soft) 0, var(--surface) 55%); border-top: 4px solid var(--coral); }
+  .ba-col.after { background: linear-gradient(180deg, var(--accent-soft) 0, var(--surface) 55%); border-top: 4px solid var(--accent); }
+  .ba-head { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.6rem; margin-bottom: 0.9rem; }
+  .ba-head b { font-size: 1.05rem; }
+  .ba-tag { font-size: 0.75rem; font-weight: 700; padding: 0.15rem 0.55rem; border-radius: 999px; color: #fff; }
+  .before .ba-tag { background: var(--coral); }
+  .after .ba-tag { background: var(--accent); color: var(--on-accent); }
+  .ba-time { margin-left: auto; font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em; }
+  .before .ba-time { color: var(--coral); }
+  .after .ba-time { color: var(--accent); }
+  .ba ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; counter-reset: s; }
+  .ba li {
+    position: relative; counter-increment: s; padding: 0.55rem 0.75rem 0.55rem 2.4rem; border-radius: 12px;
+    background: var(--surface); box-shadow: 0 0 0 1px var(--line); font-size: 0.93rem; font-weight: 550;
+  }
+  .ba li::before {
+    content: counter(s); position: absolute; left: 0.65rem; top: 0.55rem; width: 1.3rem; height: 1.3rem; border-radius: 50%;
+    display: grid; place-items: center; font-size: 0.72rem; font-weight: 700;
+  }
+  .before li::before { background: var(--coral-soft); color: var(--coral); }
+  .after li::before { background: var(--accent-soft); color: var(--accent); }
+  .ba li span { display: block; }
+  .ba li em { display: block; font-style: normal; font-weight: 500; font-size: 0.82rem; margin-top: 0.15rem; }
+  .before li em { color: var(--coral); }
+  .after li em { color: var(--accent); }
+  @media (max-width: 44rem) { .ba { grid-template-columns: 1fr; } }
+  .body { margin-top: 1rem; display: grid; gap: 2.5rem; max-width: 46rem; }
+  .body h2 { font-size: var(--step-2); }
+  .whats-next { padding: 1.1rem 1.25rem; border-radius: 16px; background: var(--accent-soft); }
+  .whats-next h2 { font-size: 1.15rem !important; margin-bottom: 0.4rem; }
+  .whats-next p { margin: 0; }
+  .steps { padding-left: 1.2rem; margin: 0; }
+  .steps li { margin-bottom: 0.5rem; }
+</style>

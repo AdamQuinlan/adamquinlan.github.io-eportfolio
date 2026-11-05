@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import NextLinks from '../components/NextLinks.astro';
+import { site, u } from '../data/site';
+---
+<Base title="Contact" description={`Get in touch with ${site.name}.`}>
+  <PageHero title="Let’s talk." kicker="Get in touch" art="contact">
+    <p class="lede">I’d love to talk about the Graduate – AI, Data &amp; Product role, and about what your field teams need next.</p>
+  </PageHero>
+  <section class="section">
+    <div class="wrap">
+      <dl class="channels">
+        <div><dt>Email</dt><dd><a href={`mailto:${site.email}`}>{site.email}</a></dd></div>
+        <div><dt>LinkedIn</dt><dd><a href={site.linkedin}>Connect on LinkedIn</a></dd></div>
+        <div><dt>Based in</dt><dd>{site.location}</dd></div>
+        <div><dt>Available</dt><dd>From {site.available}</dd></div>
+        <div><dt>Work rights</dt><dd>{site.workRights}</dd></div>
+      </dl>
+      <div class="cta">
+        <a class="btn" href={`mailto:${site.email}?subject=Graduate%20role`}>Email me</a>
+        <a class="btn ghost" href={u(site.resumePdf)} download>Download my CV (PDF)</a>
+        <a class="btn ghost" href={u('/evidence/Hillview_Chapter3_International_Business.pdf')}>Read my capstone chapter (PDF)</a>
+      </div>
+    </div>
+  </section>
+  <section class="section band">
+    <div class="wrap">
+      <p class="kick">How I made this site</p>
+      <h2>Built with AI, and checked by me.</h2>
+      <p>I built this site with Claude Code, on Astro and GitHub Pages. The experience, reflections and evidence are mine, and I used Claude to help turn them into pages and diagrams. I reviewed the content, and I can explain everything on it.</p>
+      <p>Charts and figures credited to my teammates come from their chapters of our capstone report. Industry guests are referred to by job title.</p>
+    </div>
+  </section>
+  <NextLinks current="/contact/" />
+</Base>
+
+<style>
+  .channels { margin: 0; max-width: 40rem; }
+  .channels > div { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 1rem; border-top: 1px solid var(--line); padding: 1.1rem 0; }
+  .channels > div:last-child { border-bottom: 1px solid var(--line); }
+  dt { font-weight: 600; }
+  dd { margin: 0; font-size: var(--step-1); overflow-wrap: anywhere; }
+</style>

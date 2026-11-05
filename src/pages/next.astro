@@ -1,0 +1,90 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import NextLinks from '../components/NextLinks.astro';
+import G from '../components/G.astro';
+
+const skills = [
+  ['Frontier LLMs and agents', 'Strong', 'yes', 'A three-agent app in production', 'Learn how to evaluate outputs more formally'],
+  ['Talking to users', 'Strong', 'yes', 'Product, sales, PACE partner, restaurant floor', 'Run field sessions with customers'],
+  ['Excel, VBA and automation', 'Strong', 'yes', 'Around 200 master files', 'Carry the same logic across to code'],
+  ['Python', 'Used, not deep', 'mid', 'Built the checker with Claude Code', 'Write it myself, without leaning on AI for the basics'],
+  ['SQL', 'Used, not deep', 'mid', 'Have used it to build things', 'Daily practice on real questions'],
+  ['Data engineering', 'Early', 'mid', 'Snowflake for our apps’ data and containers', 'Build my own small pipeline'],
+  ['Dashboards', 'Early', 'mid', 'A little Power BI', 'Learn Tableau, since it’s in your stack'],
+  ['Salesforce', 'Early', 'mid', 'Wireframed a concept with our sales team', 'Learn the platform properly'],
+  ['A structured language', 'Not yet', 'no', 'None so far', 'Pick one once I know what the team needs'],
+  ['Patience and team leadership', 'Working on it', 'mid', 'My capstone reflection', 'The four habits on my Teamwork page'],
+];
+const inputs = ['My capstone feedback', 'My weakness', 'Industry guests', 'The World Economic Forum', 'Your job ad', 'Lazard experience'];
+---
+<Base title="What’s next" description="My skill gaps and my plan to close them.">
+  <PageHero title="What I’m learning next." kicker="Where I’m going">
+    <p class="lede">
+      I’m not finished. My teamwork needs time and experience, and my technical skills need depth. This is what I’m doing about both.
+    </p>
+    <svg slot="art" class="hero-art" viewBox="0 0 360 260" role="img" aria-label="A rising path of steps">
+      <path class="d-line on" d="M30 220 L110 220 L110 165 L190 165 L190 110 L270 110 L270 55 L340 55" />
+      <circle class="d-me" cx="30" cy="220" r="10" /><circle class="d-node" cx="110" cy="165" r="10" /><circle class="d-node" cx="190" cy="110" r="10" /><circle class="d-node" cx="270" cy="55" r="10" />
+      <text x="60" y="206">Now</text><text x="118" y="150">Python, SQL</text><text x="198" y="96">Pipelines</text><text x="240" y="32">A new language</text>
+    </svg>
+  </PageHero>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="kick">Why I keep learning</p>
+      <h2>The skills that got me here won’t be enough.</h2>
+      <div class="split">
+        <div>
+          <p>The World Economic Forum’s <a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/in-full/3-skills-outlook/">Future of Jobs Report 2025</a> says employers expect 39% of workers’ core skills to change by 2030. AI and big data top its list of fastest-growing skills, and it names curiosity and lifelong learning, and motivation and self-awareness, as rising in importance.</p>
+          <p>I’ve lived a small version of that. I built an AI app before I understood Python in depth, which is both exciting and a risk. AI got me further than my own knowledge could, but the <G k="oui" /> is right that discernment is the expensive part. I can’t judge output I don’t understand. That is why I want depth now.</p>
+          <p>The <G k="adaptive" /> offered a useful counterweight: perfect data never arrives. So I won’t wait until I feel ready. I’ll learn by building.</p>
+        </div>
+        <svg class="diagram" viewBox="0 0 420 300" role="img" aria-label="Six sources feeding into one plan: capstone feedback, my weakness, industry guests, the World Economic Forum, the job ad and Lazard experience.">
+          {inputs.map((t, i) => (
+            <g>
+              <path class="d-line on" stroke-dasharray="5 6" d={`M190 ${28 + i * 48} C250 ${28 + i * 48} 250 150 300 150`} />
+              <rect class="d-node" x="0" y={8 + i * 48} width="190" height="40" rx="20" />
+              <text x="95" y={33 + i * 48} style="text-anchor:middle">{t}</text>
+            </g>
+          ))}
+          <circle class="d-me" cx="350" cy="150" r="56" /><text x="350" y="155" style="text-anchor:middle;fill:#fff;font-size:16px">My plan</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="wrap">
+      <p class="kick">An honest audit</p>
+      <h2>Where I stand against your stack.</h2>
+      <div class="tbl-wrap">
+        <table class="t">
+          <thead><tr><th>Skill</th><th>Where I am</th><th>Evidence</th><th>Next step</th></tr></thead>
+          <tbody>
+            {skills.map(([a, b, c, d, e]) => <tr><td><b>{a}</b></td><td><span class={`pill ${c}`}>{b}</span></td><td>{d}</td><td>{e}</td></tr>)}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="kick">The plan</p>
+      <h2>Build something at every step.</h2>
+      <p class="sub">Each step ends in something you could look at, because I learn fastest when I’m making something real.</p>
+      <ol class="road cycle">
+        <li><b>Now to January</b><h3>Python and SQL</h3><p>Rebuild one reporting transformation in Python using made-up data, then answer retail questions in SQL using BigQuery’s free public datasets.</p><p class="proof">Proof: a public repo I can explain line by line.</p></li>
+        <li><b>First half of 2027</b><h3>Data engineering</h3><p>Build a small pipeline that turns messy documents into a clean, structured data set, then show it in Tableau Public.</p><p class="proof">Proof: a working pipeline and a dashboard.</p></li>
+        <li><b>Second half of 2027</b><h3>A new language</h3><p>Learn one structured language, chosen by what the team actually uses. Your ad mentions Java, Node.js and C#, and your stack includes Swift.</p><p class="proof">Proof: one small feature, reviewed by an engineer.</p></li>
+        <li><b>Ongoing</b><h3>Patience and teamwork</h3><p>Use my four team habits on every project, and ask two people each quarter for honest feedback on how I work with others.</p><p class="proof">Proof: written feedback I act on, and fewer times I take over.</p></li>
+      </ol>
+      <div class="say">
+        <p><b>How I’ll judge it.</b> My team feedback taught me that I can’t mark my own work from the middle of it. So I’ll measure the technical plan by whether I can explain what I built without help, and the team plan by what other people tell me.</p>
+      </div>
+    </div>
+  </section>
+
+  <NextLinks current="/next/" />
+</Base>

@@ -1,0 +1,220 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import NextLinks from '../components/NextLinks.astro';
+import G from '../components/G.astro';
+import { u } from '../data/site';
+
+const benchmarks = [
+  { name: 'Dumfries House', where: 'Scotland, UK', body: 'A heritage estate with a working engineering education centre, run with industry partners and girls-only engineering days.', lesson: 'Borrow: industry co-delivery and pathways for girls' },
+  { name: '4-H', where: 'United States', body: 'A national youth network teaching agricultural STEM to about 6 million young people, with a hybrid online platform.', lesson: 'Borrow: a digital layer that extends reach' },
+  { name: 'Stone Barns Center', where: 'United States', body: 'An 80-acre working farm used as an outdoor classroom, funded by grants, donations, farm sales, fees and venue hire.', lesson: 'Borrow: diversified revenue, so education is not fee-dependent' },
+];
+const pestel = [
+  ['Political', 'Map every workshop to NSW syllabus outcomes, so excursions are easy to approve'],
+  ['Economic', 'Sponsor-funded transport bursaries for low-SES and remote schools'],
+  ['Social', 'Termly girls-only agri-tech days with female mentors'],
+  ['Technological', 'Online modules before and after visits, using live estate sensor data'],
+  ['Environmental', 'A monitoring curriculum, with indoor backup for cancelled days'],
+  ['Legal', 'Modular, non-invasive spaces on a State Heritage site, with compliance budgeted'],
+];
+const vrio = [
+  ['King’s Foundation brand', 'y', 'y', 'y', 'p', 'Potential sustained advantage'],
+  ['Heritage working estate', 'y', 'y', 'y', 'n', 'Unused advantage'],
+  ['Dumfries curriculum and know-how', 'y', 'y', 'p', 'y', 'Sustained advantage if localised'],
+  ['Australian industry network', 'y', 'd', 'd', 'n', 'Competitive gap'],
+  ['Online learning platform', 'y', 'n', 'n', 'n', 'Competitive parity'],
+];
+const mark = { y: 'Yes', p: 'Partly', n: 'No', d: '–' } as Record<string, string>;
+const irr = [
+  ['Our Agility Challenge slide', 9.5, 'old'],
+  ['Re-tested over 10 years', 7.0, ''],
+  ['If figures are nominal (2.5% inflation)', 4.4, 'low'],
+  ['If figures are nominal (4.0% inflation)', 2.9, 'low'],
+] as [string, number, string][];
+---
+<Base title="Capstone: Hillview" description="My MQBS3010 capstone project for The King’s Foundation Australia, advancing UN SDG 4 at Hillview Estate.">
+  <PageHero title="Hillview: making a heritage estate teach." kicker="My capstone project">
+    <p class="lede">
+      Five of us were given a real client, The King’s Foundation Australia, and a $1 million endowment to put behind a UN Sustainable Development Goal.
+      My job was to work out what the project should borrow from the rest of the world.
+    </p>
+    <svg slot="art" class="hero-art" viewBox="0 0 360 260" role="img" aria-label="Three overseas models feeding into Hillview Estate">
+      <path class="d-line on" d="M90 50 L190 130 M90 130 L190 130 M90 210 L190 130" stroke-dasharray="6 7" />
+      <rect class="d-node" x="10" y="30" width="110" height="38" rx="19" /><text x="65" y="54" class="mid" style="text-anchor:middle">Dumfries</text>
+      <rect class="d-node" x="10" y="111" width="110" height="38" rx="19" /><text x="65" y="135" style="text-anchor:middle">4-H</text>
+      <rect class="d-node" x="10" y="192" width="110" height="38" rx="19" /><text x="65" y="216" style="text-anchor:middle">Stone Barns</text>
+      <circle class="d-me" cx="250" cy="130" r="72" /><text x="250" y="126" fill="#fff" style="text-anchor:middle;fill:#fff;font-size:16px">Hillview</text><text x="250" y="146" style="text-anchor:middle;fill:#fff;font-size:11px">SDG 4, target 4.4</text>
+    </svg>
+  </PageHero>
+
+  <nav class="subnav" aria-label="On this page">
+    <div class="wrap">
+      <ul>
+        <li><a href="#brief">The brief</a></li>
+        <li><a href="#proposal">Our proposal</a></li>
+        <li><a href="#chapter">My chapter</a></li>
+        <li><a href="#changed">What changed</a></li>
+        <li><a href="#numbers">The numbers</a></li>
+        <li><a href="#means">What it taught me</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="section" id="brief">
+    <div class="wrap">
+      <ul class="stats">
+        <li><b>SDG 4</b><span>Quality Education, target 4.4: skills for employment</span></li>
+        <li><b>$1 million</b><span>endowment, deployed over five years, with no borrowing</span></li>
+        <li><b>Above 3%</b><span>return required, the higher of 3% or GDP growth</span></li>
+        <li><b>143 acres</b><span>State Heritage-listed estate in Sutton Forest, on Gundungurra land</span></li>
+      </ul>
+      <div class="say">
+        <p>The <G k="director" /> told our class that conservation of the estate will take five years, and that Hillview’s education programs will need a commercial component to fund the charity’s work. So doing good wasn’t enough. The plan had to pay for itself as well.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band" id="proposal">
+    <div class="wrap">
+      <p class="kick">What we proposed</p>
+      <h2>The Hillview STEM Skills Program.</h2>
+      <p class="sub">The estate becomes the laboratory: paddocks, gardens and waterways, instead of worksheets.</p>
+      <div class="grid3 cycle">
+        <div class="card"><p class="where">Years 1–2</p><h3>On-site first</h3><p>School workshops, holiday camps, teacher professional development and venue hire, funded partly by sponsors and grants.</p></div>
+        <div class="card"><p class="where">From Year 3</p><h3>Then digital</h3><p>A learning platform with live estate data reaches remote and low-income schools, if demand has been proven.</p></div>
+        <div class="card"><p class="where">Throughout</p><h3>For who needs it</h3><p>Women are about 16% of Australia’s STEM-qualified workforce, so girls-only days and subsidised places support SDGs 5 and 10 as well.</p></div>
+      </div>
+      <figure class="fig">
+        <img src={u('/evidence/team-model.png')} alt="Diagram from our Accounting chapter showing how each chapter fed the shared financial model and what the model gave back to the team." loading="lazy" />
+        <figcaption>How our chapters connected. My International Business chapter set out what we would sell. Figure from our Accounting member’s chapter, used to credit their work.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" id="chapter">
+    <div class="wrap">
+      <p class="kick">My contribution</p>
+      <h2>What should Hillview borrow from overseas?</h2>
+      <p class="sub">I turned international analysis inward. The program would not go offshore. It would import lessons already tested abroad.</p>
+      <p class="cta" style="margin-top:0"><a class="btn" href={u('/evidence/Hillview_Chapter3_International_Business.pdf')}>Read my full chapter (PDF)</a></p>
+
+      <h3 style="margin-top:2.2rem">Three benchmarks, chosen on purpose</h3>
+      <p>My tutor’s feedback was to analyse a few comparisons properly rather than many loosely. So I cut my list down to three, each solving one problem Hillview would face.</p>
+      <div class="grid3 cycle">
+        {benchmarks.map((b) => (
+          <div class="card"><p class="where">{b.where}</p><h3>{b.name}</h3><p>{b.body}</p><p class="lesson">{b.lesson}</p></div>
+        ))}
+      </div>
+
+      <div class="say">
+        <p><b>Copy the method, not the setting.</b> A <G k="professor" /> described taking lean techniques used at General Motors and Siemens to smallholder fish farms in West Africa, lifting average net margins from about 6% to 50%. That gave me the idea my whole chapter rests on: Hillview should import Dumfries’ teaching methods, not its buildings.</p>
+      </div>
+
+      <h3 style="margin-top:2.2rem">Does Australia support these models? (PESTEL)</h3>
+      <div class="grid3 cycle">
+        {pestel.map(([f, t]) => <div class="card"><h3>{f}</h3><p>{t}</p></div>)}
+      </div>
+
+      <div class="split" style="margin-top:2.5rem">
+        <div>
+          <h3>How attractive is the market? (Five Forces)</h3>
+          <p>The market is moderately attractive, with one serious weakness: substitutes are free. Hillview can’t win on price for classroom content, so it has to sell what a worksheet can’t: soil sensors, drones over paddocks and water testing on a real estate.</p>
+          <p>Qualified educators are also scarce in regional NSW. The <G k="canva" /> showed how far training everyone can go, so I recommended a train-the-trainer model for teachers and industry volunteers.</p>
+        </div>
+        <svg class="diagram" viewBox="0 0 440 300" role="img" aria-label="Five Forces. Competitive rivalry moderate. New entrants low. Substitutes high. Buyer power high for schools. Supplier power moderate to high.">
+          <path class="d-line" d="M220 150 L220 46 M220 150 L70 150 M220 150 L370 150 M220 150 L220 254" />
+          <rect class="d-mid" x="145" y="118" width="150" height="64" rx="14" /><text x="220" y="146" style="text-anchor:middle">Rivalry</text><text x="220" y="165" class="s" style="text-anchor:middle">Moderate</text>
+          <rect class="d-low" x="145" y="8" width="150" height="60" rx="14" /><text x="220" y="34" style="text-anchor:middle">New entrants</text><text x="220" y="53" class="s" style="text-anchor:middle">Low</text>
+          <rect class="d-hot" x="145" y="232" width="150" height="60" rx="14" /><text x="220" y="258" style="text-anchor:middle">Substitutes</text><text x="220" y="277" class="s" style="text-anchor:middle">High</text>
+          <rect class="d-hot" x="0" y="120" width="130" height="60" rx="14" /><text x="65" y="146" style="text-anchor:middle">Buyers</text><text x="65" y="165" class="s" style="text-anchor:middle">High (schools)</text>
+          <rect class="d-mid" x="310" y="120" width="130" height="60" rx="14" /><text x="375" y="146" style="text-anchor:middle">Suppliers</text><text x="375" y="165" class="s" style="text-anchor:middle">Moderate–high</text>
+        </svg>
+      </div>
+
+      <h3 style="margin-top:2.5rem">What gives Hillview a lasting advantage? (VRIO)</h3>
+      <p>Hillview’s best resources are rare and hard to copy, but not yet organised to capture value. Most of the lessons I imported fix exactly that.</p>
+      <div class="tbl-wrap">
+        <table class="t">
+          <thead><tr><th>Resource</th><th>Valuable</th><th>Rare</th><th>Hard to imitate</th><th>Organised</th><th>Outcome</th></tr></thead>
+          <tbody>
+            {vrio.map(([r, a, b, c, d, o]) => (
+              <tr><td>{r}</td>{[a, b, c, d].map((v) => <td class={v}>{mark[v]}</td>)}<td>{o}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="margin-top:2.5rem">Three recommendations</h3>
+      <div class="grid3 cycle">
+        <div class="card"><p class="where">Dumfries, Years 1–2</p><h3>Co-deliver with industry</h3><p>Three or four anchor partners from regional agriculture, energy and engineering, with a girls-only agri-tech day each term.</p></div>
+        <div class="card"><p class="where">Stone Barns, Years 1–2</p><h3>Diversify revenue</h3><p>Holiday camps, weekend workshops, venue hire and estate produce fund accessible school pricing.</p></div>
+        <div class="card"><p class="where">4-H, Year 3 onward</p><h3>Go hybrid</h3><p>Low-cost online modules on live estate data, once the on-site content is proven.</p></div>
+      </div>
+      <p style="margin-top:1.25rem">I also recorded the limits of my own work. The <G k="law" /> emphasised that decisions are only as sound as the underlying data, and most of my benchmark data came from the organisations themselves. So I recommended stress-testing sponsorship assumptions at half their expected level.</p>
+    </div>
+  </section>
+
+  <section class="section band" id="changed">
+    <div class="wrap">
+      <p class="kick">How my thinking changed</p>
+      <h2>I started by exporting Hillview. I finished by importing to it.</h2>
+      <div class="split">
+        <div>
+          <p>For the Agility Challenge I created our shared deck and drafted slides 12 and 13: a two-way international strategy, with a $100,000 roadmap for licensing the model overseas.</p>
+          <p>It looked strong, but I hadn’t tested it. Our Finance chapter later showed that only $15,000 of that should be committed early, with the rest waiting for evidence. By the time I wrote my final chapter, I had stopped asking how Hillview could go global and started asking what it could learn from abroad.</p>
+          <p>The second question was smaller, and much more useful to the client.</p>
+        </div>
+        <figure class="fig" style="margin-top:0">
+          <img src={u('/evidence/agility-slides.png')} alt="Slides 12 and 13 of our Agility Challenge deck, drafted by me: A Two-Way International Strategy, and Market Selection, Risk and Roadmap." loading="lazy" />
+          <figcaption>My Agility Challenge slides, from the deck’s version history.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="numbers">
+    <div class="wrap">
+      <p class="kick">The moment that stayed with me</p>
+      <h2>Our headline number was wrong, and none of us asked.</h2>
+      <div class="split">
+        <div>
+          <p>Our Agility slides said the program would return 9.5% a year. Everybody saw it, including me, and I was the one coordinating. Our Finance member later rebuilt the appraisal, found the slide relied on assumptions we had never stated, and got 7.0%.</p>
+          <p>Only 44% of 5,000 simulated scenarios reached the hurdle. So our final advice was not a simple yes. We recommended staging the money, and asking for signed school partnerships covering at least 91% of planned participation before making bigger commitments.</p>
+          <p>The <G k="lighthouse" /> said the data is what the data is, and that interpretations differ with experience. I now treat any number I can’t explain as a question I haven’t asked yet.</p>
+        </div>
+        <div>
+          <h3>Real annual return against the 3% hurdle</h3>
+          <div class="bars" role="img" aria-label="Return was 9.5% on the slide, 7.0% re-tested, 4.4% if figures are nominal at 2.5% inflation, and 2.9% at 4.0% inflation. The hurdle is 3%.">
+            {irr.map(([l, v, c]) => (
+              <div class="bar-row">
+                <span>{l}</span>
+                <span class="bar-track"><span class={`bar-fill ${c}`} style={`width:${v * 10}%`}>{v.toFixed(1)}%</span><span class="hurdle" style="left:30%"></span></span>
+              </div>
+            ))}
+          </div>
+          <p class="bars-note">The black line is the 3% hurdle. Figures from our Finance chapter (Chapter 5).</p>
+          <figure class="fig">
+            <img src={u('/evidence/monte-carlo.png')} alt="Histogram from our Finance chapter showing the spread of ten-year returns across 5,000 simulated trials." loading="lazy" />
+            <figcaption>The spread of returns across 5,000 trials. Figure from our Finance member’s chapter, used to credit their work.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band" id="means">
+    <div class="wrap">
+      <p class="kick">What it taught me</p>
+      <h2>Why this matters for the role.</h2>
+      <div class="grid3 cycle">
+        <div class="card"><h3>Who needs it, and how they’d use it</h3><p>Hillview only works if schools book it, which is why a free worksheet is the real competitor. Any product has a free alternative, even if it’s just a spreadsheet. I want to understand that alternative before I build.</p></div>
+        <div class="card"><h3>Pick the question first</h3><p>Three benchmarks analysed properly taught me more than a long list would have. I learned that from my tutor’s feedback, and I’d use it when choosing which AI ideas are worth chasing.</p></div>
+        <div class="card"><h3>Test what sounds good</h3><p>The most confident number in our deck was the one nobody tested. Being curious means questioning your own work too, especially when it looks finished.</p></div>
+      </div>
+      <p style="margin-top:1.5rem"><a href={u('/teamwork/')}>Next: what this project taught me about how I work with people</a></p>
+    </div>
+  </section>
+
+  <NextLinks current="/hillview/" />
+</Base>

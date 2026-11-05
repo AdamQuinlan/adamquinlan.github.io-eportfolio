@@ -1,0 +1,239 @@
+---
+// Page header for the inside pages: title and intro on the left,
+// an engineering-style illustration on the right, over a faint blueprint grid.
+interface Props {
+  title: string;
+  kicker?: string;
+  art?: 'about' | 'projects' | 'experience' | 'contact' | 'automation' | 'checker';
+}
+const { title, kicker, art } = Astro.props;
+---
+<section class="ph">
+  <div class="wrap ph-grid">
+    <div class="ph-copy">
+      {kicker && <p class="ph-kicker">{kicker}</p>}
+      <h1>{title}</h1>
+      <slot />
+    </div>
+    <div class="ph-art" aria-hidden="true">
+      <slot name="art" />
+      {art === 'about' && (
+        <svg viewBox="0 0 360 260">
+          <g class="ln">
+            <path d="M70 70 L180 130 M70 190 L180 130 M290 70 L180 130 M290 190 L180 130" />
+            <path class="flow" d="M70 70 L180 130 L290 70" />
+            <path class="flow f2" d="M70 190 L180 130 L290 190" />
+          </g>
+          <g class="nd biz">
+            <rect x="22" y="48" width="96" height="44" rx="22" /><text x="70" y="75">Business</text>
+            <rect x="22" y="168" width="96" height="44" rx="22" /><text x="70" y="195">People</text>
+          </g>
+          <g class="nd dat">
+            <rect x="242" y="48" width="96" height="44" rx="22" /><text x="290" y="75">Data</text>
+            <rect x="242" y="168" width="96" height="44" rx="22" /><text x="290" y="195">Automation</text>
+          </g>
+          <g class="core">
+            <circle cx="180" cy="130" r="34" />
+            <text x="180" y="135">Adam</text>
+          </g>
+        </svg>
+      )}
+
+      {(art === 'projects' || art === 'automation') && (
+        <svg viewBox="0 0 360 260">
+          <g class="ln">
+            <path class="flow" d="M86 60 C120 60 120 130 150 130 M86 130 L150 130 M86 200 C120 200 120 130 150 130" />
+            <path class="flow f2" d="M214 130 L262 130" />
+          </g>
+          <g class="file xl"><rect x="22" y="40" width="64" height="40" rx="8" /><text x="54" y="65">.xlsx</text></g>
+          <g class="file xl"><rect x="22" y="110" width="64" height="40" rx="8" /><text x="54" y="135">.xlsx</text></g>
+          <g class="file wd"><rect x="22" y="180" width="64" height="40" rx="8" /><text x="54" y="205">.docx</text></g>
+          <g class="gear">
+            <circle cx="182" cy="130" r="32" />
+            <circle class="hole" cx="182" cy="130" r="11" />
+            <g class="teeth">{[0, 45, 90, 135, 180, 225, 270, 315].map((a) => <rect x="176" y="90" width="12" height="12" rx="2" transform={`rotate(${a} 182 130)`} />)}</g>
+          </g>
+          <g class="sheet">
+            <rect x="262" y="58" width="80" height="144" rx="8" />
+            <rect class="hd" x="272" y="70" width="44" height="7" rx="3" />
+            <circle class="pie" cx="290" cy="106" r="15" />
+            <path class="pie2" d="M290 106 L290 91 A15 15 0 0 1 304 111 Z" />
+            <rect class="bar" x="272" y="168" width="10" height="22" /><rect class="bar" x="287" y="158" width="10" height="32" />
+            <rect class="bar" x="302" y="150" width="10" height="40" /><rect class="bar" x="317" y="140" width="10" height="50" />
+            <rect class="row" x="272" y="128" width="60" height="4" rx="2" /><rect class="row" x="272" y="137" width="48" height="4" rx="2" />
+          </g>
+        </svg>
+      )}
+
+      {art === 'checker' && (
+        <svg viewBox="0 0 360 260">
+          <g class="ln"><path class="flow" d="M70 52 L150 110 M290 52 L210 110 M180 226 L180 190 M70 52 L290 52 L180 226 Z" /></g>
+          <g class="sheet">
+            <rect x="140" y="92" width="80" height="100" rx="8" />
+            <rect class="hd" x="150" y="104" width="44" height="7" rx="3" />
+            <rect class="row" x="150" y="120" width="60" height="4" rx="2" /><rect class="row" x="150" y="130" width="52" height="4" rx="2" />
+            <rect class="row" x="150" y="140" width="60" height="4" rx="2" /><rect class="row" x="150" y="150" width="40" height="4" rx="2" />
+            <path class="tick" d="M156 172 l8 8 l16 -16" />
+          </g>
+          <g class="agent"><circle cx="70" cy="52" r="24" /><text x="70" y="58">1</text></g>
+          <g class="agent"><circle cx="290" cy="52" r="24" /><text x="290" y="58">2</text></g>
+          <g class="agent"><circle cx="180" cy="226" r="24" /><text x="180" y="232">3</text></g>
+        </svg>
+      )}
+
+      {art === 'experience' && (
+        <svg viewBox="0 0 360 260">
+          <defs>
+            <linearGradient id="fadeIn" x1="0" x2="1">
+              <stop offset="0" stop-color="#e3a21b" stop-opacity="0" />
+              <stop offset="0.18" stop-color="#e3a21b" />
+            </linearGradient>
+          </defs>
+          <g class="gx">
+            <line x1="276.0" y1="34" x2="276.0" y2="226" class="yr" />
+            <text x="20.0" y="248" class="ax" text-anchor="start">2026</text>
+            <text x="280.0" y="248" class="ax" text-anchor="start">2027</text>
+            <line x1="14" y1="226" x2="346" y2="226" class="axis" />
+          </g>
+          <g class="lane">
+            <text x="20" y="54" class="lbl">Bachelor of Commerce, Macquarie</text>
+            <rect x="0" y="62" width="254.6" height="26" rx="13" fill="url(#fadeIn)" />
+            <circle cx="241.6" cy="75" r="7" class="flag" />
+            <text x="260.6" y="80" class="note" text-anchor="start">Graduate, Nov</text>
+          </g>
+          <g class="lane">
+            <text x="62.7" y="116" class="lbl">Intern, Lazard Asset Management</text>
+            <rect x="62.7" y="124" width="234.6" height="26" rx="13" class="bar-l" />
+            <text x="74.7" y="141" class="in" text-anchor="start">Mar 2026 – Jan 2027</text>
+            <line x1="190.6" y1="151" x2="190.6" y2="157" class="tick" />
+            <text x="190.6" y="168" class="note">Building master files, from Sep</text>
+          </g>
+          <g class="lane">
+            <text x="297.3" y="196" class="lbl next" text-anchor="start">Next</text>
+            <rect x="297.3" y="204" width="48.7" height="16" rx="8" class="bar-n" />
+          </g>
+        </svg>
+      )}
+
+      {art === 'contact' && (
+        <svg viewBox="0 0 360 260">
+          <g class="ln">
+            <path class="flow" d="M180 130 L60 60 M180 130 L300 60 M180 130 L60 200 M180 130 L300 200" />
+          </g>
+          <g class="peer">
+            <circle cx="60" cy="60" r="18" /><circle cx="300" cy="60" r="18" />
+            <circle cx="60" cy="200" r="18" /><circle cx="300" cy="200" r="18" />
+          </g>
+          <g class="env">
+            <rect x="128" y="96" width="104" height="70" rx="10" />
+            <path d="M132 102 L180 138 L228 102" />
+          </g>
+        </svg>
+      )}
+    </div>
+  </div>
+</section>
+
+<style>
+  .ph {
+    position: relative;
+    padding: clamp(3rem, 8vw, 5.5rem) 0 clamp(2.5rem, 6vw, 4rem);
+    border-bottom: 1px solid var(--line);
+    background-image:
+      radial-gradient(circle at 88% 18%, rgba(95, 208, 217, 0.28), transparent 32%),
+      radial-gradient(circle at 70% 95%, rgba(240, 180, 60, 0.22), transparent 34%),
+      linear-gradient(rgba(11, 122, 133, 0.11) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(11, 122, 133, 0.11) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 28px 28px, 28px 28px;
+    background-position: 0 0, 0 0, -1px -1px, -1px -1px;
+    overflow: hidden;
+  }
+  .ph::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(90deg, var(--bg) 18%, rgba(var(--bg-rgb), 0.5) 55%, rgba(var(--bg-rgb), 0.1));
+  }
+  .ph-grid {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: 2rem 3rem; align-items: center;
+  }
+  .ph-kicker { color: var(--accent); font-weight: 650; font-size: 1.05rem; margin-bottom: 0.6rem; }
+  .ph-copy h1 { font-size: clamp(2.6rem, 6vw, 4.6rem); font-weight: 800; letter-spacing: -0.045em; max-width: 16ch; }
+  .ph-copy :global(.lede) { margin-bottom: 0; }
+
+  .ph-art svg { width: 100%; max-width: 380px; height: auto; display: block; margin-left: auto; overflow: visible; }
+  svg text { font-family: var(--body); font-size: 13px; font-weight: 600; text-anchor: middle; }
+  .ln path { fill: none; stroke: #b9c7cb; stroke-width: 2; }
+  .ln .flow { stroke: var(--accent); stroke-dasharray: 5 7; animation: flow 1.6s linear infinite; }
+  .ln .f2 { animation-duration: 2.1s; }
+  @keyframes flow { to { stroke-dashoffset: -48; } }
+
+  .nd rect { stroke-width: 1.5; }
+  .nd.biz rect { fill: #f8efd9; stroke: #c98f0c; }
+  .nd.biz text { fill: #8a5f00; }
+  .nd.dat rect { fill: var(--accent-soft); stroke: var(--accent); }
+  .nd.dat text { fill: var(--accent); }
+  .core circle { fill: var(--node-dark); }
+  .core text { fill: #fff; font-size: 14px; font-weight: 700; }
+
+  .file rect { fill: #fff; stroke-width: 1.5; }
+  .file.xl rect { stroke: #107c41; }
+  .file.xl text { fill: #107c41; }
+  .file.wd rect { stroke: #185abd; }
+  .file.wd text { fill: #185abd; }
+  .gear circle, .gear rect { fill: var(--node-dark); }
+  .gear .hole { fill: var(--bg); }
+  .gear { transform-origin: 182px 130px; animation: spin 14s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .sheet > rect:first-child { fill: #fff; stroke: #d2d2d7; stroke-width: 1.5; }
+  .sheet .hd { fill: #0b3d5c; }
+  .sheet .row { fill: #e3e6ea; }
+  .sheet .bar { fill: var(--accent); }
+  .sheet .pie { fill: #9fd8dd; }
+  .sheet .pie2 { fill: #0b3d5c; }
+  .sheet .tick { fill: none; stroke: #1f8a4c; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+
+  .agent circle { fill: var(--accent); }
+  .agent text { fill: #fff; font-size: 16px; font-weight: 700; }
+
+  svg text[text-anchor='start'] { text-anchor: start; }
+  .gx .yr { stroke: #c9d3d6; stroke-width: 1.5; stroke-dasharray: 4 5; }
+  .gx .axis { stroke: #c9d3d6; stroke-width: 1.5; }
+  .gx .ax { fill: var(--muted); font-size: 12px; font-weight: 600; }
+  .lane .lbl { fill: var(--ink); font-size: 12.5px; font-weight: 650; text-anchor: start; }
+  .lane .lbl.next { fill: var(--muted); }
+  .lane .note { fill: var(--muted); font-size: 11.5px; font-weight: 550; }
+  .lane .in { fill: #fff; font-size: 12px; font-weight: 650; }
+  .bar-l { fill: var(--accent); }
+  .bar-n { fill: none; stroke: #9aa7ab; stroke-width: 1.5; stroke-dasharray: 5 4; }
+  .lane .flag { fill: #fff; stroke: #b07800; stroke-width: 3; }
+  .lane .tick { stroke: var(--accent); stroke-width: 2; }
+  .ms circle { fill: #fff; stroke: var(--accent); stroke-width: 3; }
+  .ms .now { fill: var(--accent); }
+  .ms.br circle { fill: var(--accent); stroke: none; }
+  .ms text { fill: var(--ink); }
+  .ms text.sub { fill: var(--muted); font-weight: 500; font-size: 12px; }
+
+  .peer circle { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.5; }
+  .env rect { fill: #fff; stroke: var(--ink); stroke-width: 2; }
+  .env path { fill: none; stroke: var(--ink); stroke-width: 2; stroke-linejoin: round; }
+
+  @media (max-width: 52rem) {
+    .ph-grid { grid-template-columns: 1fr; }
+    .ph::after { background: linear-gradient(180deg, var(--bg) 35%, rgba(var(--bg-rgb), 0.55)); }
+    .ph-art svg { max-width: 300px; margin: 0 auto; }
+  }
+
+  /* Dark theme: keep illustrations readable */
+  :global(:root[data-theme='dark']) .file rect,
+  :global(:root[data-theme='dark']) .sheet > rect:first-child,
+  :global(:root[data-theme='dark']) .env rect,
+  :global(:root[data-theme='dark']) .ms circle,
+  :global(:root[data-theme='dark']) .lane .flag { fill: var(--surface); }
+  :global(:root[data-theme='dark']) .sheet .row { fill: #2c3a41; }
+  :global(:root[data-theme='dark']) .sheet .hd, :global(:root[data-theme='dark']) .sheet .pie2 { fill: #9fd8dd; }
+  :global(:root[data-theme='dark']) .env rect, :global(:root[data-theme='dark']) .env path { stroke: var(--ink); }
+  :global(:root[data-theme='dark']) .nd.biz rect { fill: var(--amber-soft); }
+  :global(:root[data-theme='dark']) .nd.biz text { fill: var(--amber-ink); }
+  :global(:root[data-theme='dark']) .gear .hole { fill: var(--bg); }
+</style>

@@ -1,0 +1,95 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import NextLinks from '../components/NextLinks.astro';
+import G from '../components/G.astro';
+import { u } from '../data/site';
+
+const work = [
+  ['Explore frontier AI and turn it into features customers use', 'Took a multi-agent checking app built with Claude Code into production.', 'yes', 'Shown'],
+  ['Support customers, and turn feedback into product improvements', 'Took each version back to product and sales, and built their input in.', 'yes', 'Shown'],
+  ['Connect what customers ask for with what they actually need', 'Learned how the teams really checked documents before designing anything. Worked through the Salesforce concept with sales.', 'yes', 'Shown'],
+  ['Follow your work through to adoption', 'The checker is used by the people it was built for. I’m now extending the reporting approach to quarterly and annual work.', 'yes', 'Shown'],
+  ['Test and validate releases', 'Built checks into every master file, and agents that cross-check each other.', 'yes', 'Shown'],
+  ['Reports, dashboards and insights for field teams', 'Strong in Excel-based reporting and used a little Power BI. I haven’t used Tableau yet.', 'mid', 'Building'],
+  ['SQL, and a structured language', 'I have used SQL and Python to build things, but not in depth. I haven’t used Java, Node.js, C# or Swift.', 'mid', 'Building'],
+];
+const notFor = [
+  ['Want a structured graduate program', 'My internship moved from reporting, to building automation, to an AI app, with no fixed curriculum.'],
+  ['Want to do the same job every day', 'My internship has mixed business analysis, data analysis and business systems.'],
+  ['Prefer waiting for instructions', 'If anything, I have the opposite problem. See my weakness.'],
+  ['Consider the job done once it’s merged', 'I took the checker from prototype through to production with its users.'],
+  ['Avoid talking to customers', 'I’ve worked in three hospitality jobs, as a waiter and a Floor Manager.'],
+  ['Think AI is just a buzzword', 'Mine runs in production and I can explain how each agent works.'],
+];
+---
+<Base title="Why woolloo" description="Why I want the Graduate – AI, Data & Product role at woolloo, and what I would do first.">
+  <PageHero title="“The customer is using it and they love it.”" kicker="Why woolloo">
+    <p class="lede">
+      That’s your definition of done, and it’s the reason I’m applying. The best thing I’ve built counted because people changed how they work, not because it shipped.
+    </p>
+    <svg slot="art" class="hero-art" viewBox="0 0 360 260" role="img" aria-label="Apps, data and agents joining into one platform for field teams">
+      <path class="d-line on" stroke-dasharray="6 7" d="M80 50 L180 130 M80 130 L180 130 M80 210 L180 130 M180 130 L290 130" />
+      <rect class="d-node" x="20" y="32" width="84" height="36" rx="18" /><text x="62" y="55" style="text-anchor:middle">Apps</text>
+      <rect class="d-node" x="20" y="112" width="84" height="36" rx="18" /><text x="62" y="135" style="text-anchor:middle">Data</text>
+      <rect class="d-node" x="20" y="192" width="84" height="36" rx="18" /><text x="62" y="215" style="text-anchor:middle">Agents</text>
+      <circle class="d-me" cx="180" cy="130" r="30" />
+      <rect class="d-node" x="240" y="104" width="110" height="52" rx="14" /><text x="295" y="126" style="text-anchor:middle">Field team</text><text x="295" y="144" class="s" style="text-anchor:middle">using it</text>
+    </svg>
+  </PageHero>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="kick">What You’ll Actually Do</p>
+      <h2>Your list, against what I’ve done.</h2>
+      <ul class="match">
+        {work.map(([a, b, c, d]) => <li><span class="ask">{a}</span><span class="ev">{b}</span><span class={`pill ${c}`}>{d}</span></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="wrap">
+      <p class="kick">Which ideas are worth chasing</p>
+      <h2>The hard part isn’t the AI any more.</h2>
+      <div class="split">
+        <div>
+          <p>The <G k="oui" /> argued that intelligence has become cheap while discernment remains expensive. That matches what I’ve found. Getting an agent to produce something is quick. The slow part is deciding what it should do, and whether anyone needs it.</p>
+          <p>Your ad asks for someone who can tell which ideas are worth chasing. I’m still learning that. My capstone’s wellness idea died because we ran out of time, not because we tested it, and the 9.5% survived because nobody questioned it. Next time I’d run a simple screen: open ideas first, then test each one against fixed criteria.</p>
+        </div>
+        <div class="say" style="margin-top:0">
+          <p>The <G k="nurse" /> argued that a recommendation backed by evidence is itself a form of leadership. That’s how I read your line that seniority doesn’t win arguments and great thinking does. I’d like to work somewhere that tests ideas that way.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="kick">My first 90 days</p>
+      <h2>What I’d do first.</h2>
+      <ol class="road cycle">
+        <li><b>Weeks 1–2</b><h3>Go into the field</h3><p>Sit with a customer’s field team and watch how they use the product before I suggest anything.</p></li>
+        <li><b>Weeks 3–4</b><h3>Learn the data</h3><p>Answer real questions in SQL, and have someone senior review my queries.</p></li>
+        <li><b>Weeks 5–8</b><h3>Ship something small</h3><p>Pick one thing that slows a field team down, and prototype a fix with a frontier LLM.</p></li>
+        <li><b>Weeks 9–12</b><h3>See it through</h3><p>Stay with it until they’re using it, then ask for honest feedback on the work and on how I worked with the team.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="wrap">
+      <p class="kick">Your “Not For You If…” list</p>
+      <h2>I checked.</h2>
+      <div class="tbl-wrap">
+        <table class="t">
+          <thead><tr><th>Not for you if you…</th><th>Me</th></tr></thead>
+          <tbody>{notFor.map(([a, b]) => <tr><td>{a}</td><td>{b}</td></tr>)}</tbody>
+        </table>
+      </div>
+      <p style="margin-top:1.5rem">You also list a degree in computer science, AI, data or similar. Mine is in commerce. <a href={u('/next/')}>Here’s how I plan to close that gap</a>.</p>
+    </div>
+  </section>
+
+  <NextLinks current="/why-woolloo/" />
+</Base>

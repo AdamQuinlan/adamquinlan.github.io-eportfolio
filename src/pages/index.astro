@@ -1,0 +1,134 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import NextLinks from '../components/NextLinks.astro';
+import G from '../components/G.astro';
+import { u } from '../data/site';
+
+const asks = [
+  {
+    ask: '“Own outcomes, not tasks.”',
+    ev: 'I took an AI checking app from prototype into production at Lazard. The product and sales teams use it, and a check that took an hour now takes about five minutes.',
+    href: '/built/', label: 'See it', level: 'Shown', cls: 'yes',
+  },
+  {
+    ask: '“Genuinely curious: you tinker, prototype.”',
+    ev: 'I built that app with Claude Code in Python while I was still learning Python properly. For my capstone I went looking for how a US farm and a youth network solve problems a Southern Highlands estate would face.',
+    href: '/hillview/', label: 'See it', level: 'Shown', cls: 'yes',
+  },
+  {
+    ask: '“Enjoy talking to customers and aren’t afraid to ask clarifying questions.”',
+    ev: 'I sat with product and sales to learn how they checked documents before I built anything. Before that, I was a Floor Manager in a restaurant.',
+    href: '/built/', label: 'See it', level: 'Shown', cls: 'yes',
+  },
+  {
+    ask: '“Write clearly and think in structured steps.”',
+    ev: 'My capstone chapter uses PESTEL, Five Forces and VRIO to answer one question and finish with three phased recommendations.',
+    href: '/hillview/#chapter', label: 'See it', level: 'Shown', cls: 'yes',
+  },
+  {
+    ask: '“Make your case. Seniority doesn’t win arguments.”',
+    ev: 'I can do this and I sometimes overdo it. In my capstone team I pushed decisions through, and I have had to learn what that cost.',
+    href: '/teamwork/', label: 'See it', level: 'Still working on it', cls: 'mid',
+  },
+  {
+    ask: 'SQL and software development',
+    ev: 'I have used both to build things, but I do not have an in-depth understanding yet. This is my main gap, and I have a plan for it.',
+    href: '/next/', label: 'See the plan', level: 'Building', cls: 'mid',
+  },
+];
+---
+<Base title="Home">
+  <PageHero title="I build things people use. Now I’m learning to bring people with me." kicker="For the Graduate – AI, Data & Product role at woolloo">
+    <p class="lede">
+      I’m Adam Quinlan, and I’m finishing a Bachelor of Commerce in International Business at Macquarie University.
+      I don’t have a computer science degree. Your ad said to show you what I’ve built or figured out, so that is what this site does.
+    </p>
+    <svg slot="art" class="hero-art" viewBox="0 0 360 260" role="img" aria-label="Two habits drawn as paths: the fast route alone, and the route that brings the team along">
+      <path class="d-line" d="M30 200 C120 200 200 60 330 60" />
+      <path class="d-line on" stroke-dasharray="6 7" d="M30 200 C110 120 170 210 240 160 S300 100 330 60" />
+      <circle class="d-me" cx="30" cy="200" r="13" />
+      <circle class="d-low" cx="130" cy="166" r="11" /><circle class="d-low" cx="190" cy="186" r="11" /><circle class="d-low" cx="262" cy="138" r="11" />
+      <circle class="d-me" cx="330" cy="60" r="13" />
+      <text x="62" y="240">Start</text><text x="250" y="30">Used and loved</text>
+    </svg>
+  </PageHero>
+
+  <section class="section">
+    <div class="wrap">
+      <ul class="stats">
+        <li><b>60 → 5 min</b><span>to check a report, with the AI app I built at Lazard</span></li>
+        <li><b>2 wks → 6 days</b><span>for monthly client reporting, after our team automated it</span></li>
+        <li><b>5 people, 5 chapters</b><span>in my capstone team’s plan for a $1 million endowment</span></li>
+        <li><b>9.5% → 7.0%</b><span>our headline return after a teammate re-tested it. None of us had questioned it, and that included me</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="wrap">
+      <p class="kick">The one thing to know about me</p>
+      <h2>My best habit and my worst habit are the same habit.</h2>
+      <div class="split">
+        <div>
+          <p>When something is slow, I find the fastest route through it. That instinct built an app that gives a team back most of an hour on every report.</p>
+          <p>It is also why, on my capstone team, I stopped waiting for people and started doing the work myself. That kept us moving, but it didn’t make us a team.</p>
+          <p>The <G k="canva" /> described how training every colleague in a complex process cut customer wait times from 45 minutes to five. I had made almost the same improvement with software, and I had never tried it with people. That is the skill I am working on now.</p>
+          <p><a href={u('/teamwork/')}>Read what happened on my team</a></p>
+        </div>
+        <svg class="diagram" viewBox="0 0 420 250" role="img" aria-label="Two results compared. Software at Lazard took a report check from 60 minutes to 5. Training people, in the Canva example, took customer wait times from 45 minutes to 5.">
+          <text x="0" y="24">Software: my AI checker</text>
+          <rect x="0" y="36" width="400" height="26" rx="6" fill="var(--coral)" /><text x="10" y="54" class="w">60 min</text>
+          <rect x="0" y="68" width="42" height="26" rx="6" fill="var(--accent)" /><text x="50" y="86">5 min</text>
+          <text x="0" y="146">People: training every colleague</text>
+          <rect x="0" y="158" width="300" height="26" rx="6" fill="var(--coral)" /><text x="10" y="176" class="w">45 min</text>
+          <rect x="0" y="190" width="42" height="26" rx="6" fill="var(--accent)" /><text x="50" y="208">5 min</text>
+          <text x="0" y="240" class="s">The second example is from a Capstone industry guest lecture.</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="kick">Your ad, my evidence</p>
+      <h2>What you asked for, and where I stand.</h2>
+      <p class="sub">I’ve marked what I can already show and what I’m still building. You’ll find both on this site.</p>
+      <ul class="match">
+        {asks.map((a) => (
+          <li>
+            <span class="ask">{a.ask}</span>
+            <span class="ev">{a.ev} <a href={u(a.href)}>{a.label}</a></span>
+            <span class={`pill ${a.cls}`}>{a.level}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="wrap">
+      <p class="kick">How I got here</p>
+      <h2>Each step taught me something different.</h2>
+      <svg class="diagram" viewBox="0 0 1000 200" role="img" aria-label="Timeline: hospitality from 2022, Lazard internship from March 2026, Capstone from mid-2026, graduating November 2026, available mid-January 2027">
+        <line class="d-line on" x1="30" y1="60" x2="970" y2="60" />
+        {[
+          [60, '2022–2025', 'Hospitality', 'Waiter to Floor Manager'],
+          [290, 'March 2026', 'Lazard', 'Automation and AI in production'],
+          [520, 'Session 2, 2026', 'Capstone', 'Leading a team, and its cost'],
+          [750, 'November 2026', 'Graduating', 'Bachelor of Commerce'],
+          [930, 'January 2027', 'Available', 'Ready to start'],
+        ].map(([x, w, t, s]) => (
+          <g>
+            <circle class="d-me" cx={x as number} cy="60" r="10" />
+            <text x={x as number} y="34" class="mid s">{w}</text>
+            <text x={x as number} y="96" class="mid">{t}</text>
+            <text x={x as number} y="118" class="mid s">{s}</text>
+          </g>
+        ))}
+      </svg>
+    </div>
+  </section>
+
+  <NextLinks current="/" />
+</Base>
